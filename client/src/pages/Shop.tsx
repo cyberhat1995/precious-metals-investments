@@ -7,6 +7,7 @@ import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Link } from "wouter";
 import { useState } from "react";
 
 export default function Shop() {
@@ -132,9 +133,11 @@ export default function Shop() {
                   <Button className="flex-1 bg-primary hover:bg-primary/90">
                     הוסף לסל
                   </Button>
-                  <Button variant="outline" className="flex-1">
-                    פרטים
-                  </Button>
+                  <Link href={`/product/${product.id}`}>
+                    <Button variant="outline" className="flex-1">
+                      פרטים
+                    </Button>
+                  </Link>
                 </CardFooter>
               </Card>
             ))}

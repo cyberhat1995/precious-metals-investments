@@ -10,12 +10,14 @@ import About from "./pages/About";
 import GoldPrice from "./pages/GoldPrice";
 import SilverPrice from "./pages/SilverPrice";
 import Contact from "./pages/Contact";
+import ProductDetail from "./pages/ProductDetail";
 
 function Router() {
   return (
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/shop"} component={Shop} />
+      <Route path={"/product/:id"} component={ProductDetail} />
       <Route path={"/about"} component={About} />
       <Route path={"/gold-price"} component={GoldPrice} />
       <Route path={"/silver-price"} component={SilverPrice} />

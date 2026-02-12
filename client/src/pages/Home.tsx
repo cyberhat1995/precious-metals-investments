@@ -127,10 +127,15 @@ export default function Home() {
                     <span className="text-sm text-muted-foreground">ליחידה</span>
                   </div>
                 </CardContent>
-                <CardFooter className="p-6 pt-0">
-                  <Button className="w-full bg-primary hover:bg-primary/90" size="lg">
+                <CardFooter className="p-6 pt-0 flex gap-2">
+                  <Button className="flex-1 bg-primary hover:bg-primary/90" size="lg">
                     הוסף לסל
                   </Button>
+                  <Link href={`/product/${product.id}`}>
+                    <Button variant="outline" className="flex-1" size="lg">
+                      פרטים
+                    </Button>
+                  </Link>
                 </CardFooter>
               </Card>
             ))}

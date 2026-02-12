@@ -17,11 +17,11 @@ export default function Shop() {
   const products = [
     {
       id: 1,
-      name: "מטבע זהב אמריקן איגל 1 אונקיה 2026",
-      price: 19712.53,
-      category: "gold",
-      image: "https://images.unsplash.com/photo-1610375461246-83df859d849d?w=800&q=80",
-      description: "מטבע זהב טהור 999.9 מהמנטה האמריקאית",
+      name: "מטבע כסף דרמי 100 - מהדורה מוגבלת",
+      price: 367.51,
+      category: "silver",
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663043088566/UuKfUrSKRsqWyLFT.png",
+      description: "מטבע כסף טהור 999 במהדורה מוגבלת של 10,000 יחידות",
       inStock: true
     }
   ];

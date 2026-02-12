@@ -22,20 +22,6 @@ export default function Home() {
       price: "₪19,712",
       image: "https://images.unsplash.com/photo-1610375461246-83df859d849d?w=800&q=80",
       description: "מטבע זהב טהור 999.9 מהמנטה האמריקאית"
-    },
-    {
-      id: 2,
-      name: "מטבע כסף בופאלו 1 אונקיה",
-      price: "₪367",
-      image: silverCoinsUrl,
-      description: "מטבע כסף טהור 999 בעיצוב קלאסי"
-    },
-    {
-      id: 3,
-      name: "טיוב 20 מטבעות כסף איגל",
-      price: "₪7,764",
-      image: "https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=800&q=80",
-      description: "אריזה מקורית של 20 מטבעות כסף"
     }
   ];
 

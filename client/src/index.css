@@ -42,48 +42,63 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* Neo-Classical Elegance Design System
-   - Warm ivory background with paper texture
-   - Antique gold accents (#B8935E)
-   - Deep forest green (#2C3E2F)
-   - Classical typography with Playfair Display and Cormorant Garamond
-   - Symmetrical balanced layouts with generous whitespace
-*/
-
+/* Dark Theme with Emerald Green and Burgundy/Wine Colors */
 :root {
-  --primary: #B8935E;
-  --primary-foreground: #FAF8F3;
-  --sidebar-primary: #B8935E;
-  --sidebar-primary-foreground: #FAF8F3;
-  --chart-1: #D4AF7A;
-  --chart-2: #B8935E;
-  --chart-3: #9C7842;
-  --chart-4: #805D26;
-  --chart-5: #64420A;
-  --radius: 0.25rem;
-  --background: #FAF8F3;
-  --foreground: #4A4A48;
-  --card: #FFFFFF;
-  --card-foreground: #4A4A48;
-  --popover: #FFFFFF;
-  --popover-foreground: #4A4A48;
-  --secondary: #F5F2ED;
-  --secondary-foreground: #4A4A48;
-  --muted: #F5F2ED;
-  --muted-foreground: #6B6B69;
-  --accent: #2C3E2F;
-  --accent-foreground: #FAF8F3;
-  --destructive: #B91C1C;
-  --destructive-foreground: #FFFFFF;
-  --border: #E5E1D8;
-  --input: #E5E1D8;
-  --ring: #B8935E;
-  --sidebar: #FFFFFF;
-  --sidebar-foreground: #4A4A48;
-  --sidebar-accent: #F5F2ED;
-  --sidebar-accent-foreground: #4A4A48;
-  --sidebar-border: #E5E1D8;
-  --sidebar-ring: #B8935E;
+  /* Emerald Green as Primary */
+  --primary: oklch(0.55 0.15 165);
+  --primary-foreground: oklch(0.98 0.01 165);
+  
+  /* Burgundy/Wine as Accent */
+  --accent: oklch(0.35 0.12 15);
+  --accent-foreground: oklch(0.95 0.02 15);
+  
+  --sidebar-primary: oklch(0.55 0.15 165);
+  --sidebar-primary-foreground: oklch(0.98 0.01 165);
+  
+  --chart-1: oklch(0.55 0.15 165);
+  --chart-2: oklch(0.45 0.13 165);
+  --chart-3: oklch(0.35 0.12 15);
+  --chart-4: oklch(0.45 0.10 15);
+  --chart-5: oklch(0.25 0.08 15);
+  
+  --radius: 0.65rem;
+  
+  /* Dark Background */
+  --background: oklch(0.12 0.015 240);
+  --foreground: oklch(0.92 0.01 165);
+  
+  /* Dark Card */
+  --card: oklch(0.16 0.02 240);
+  --card-foreground: oklch(0.92 0.01 165);
+  
+  /* Dark Popover */
+  --popover: oklch(0.16 0.02 240);
+  --popover-foreground: oklch(0.92 0.01 165);
+  
+  /* Dark Secondary */
+  --secondary: oklch(0.20 0.025 240);
+  --secondary-foreground: oklch(0.85 0.01 165);
+  
+  /* Dark Muted */
+  --muted: oklch(0.24 0.03 240);
+  --muted-foreground: oklch(0.65 0.02 165);
+  
+  /* Destructive */
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.98 0.01 25);
+  
+  /* Borders */
+  --border: oklch(0.28 0.03 240);
+  --input: oklch(0.28 0.03 240);
+  --ring: oklch(0.55 0.15 165);
+  
+  /* Sidebar */
+  --sidebar: oklch(0.16 0.02 240);
+  --sidebar-foreground: oklch(0.92 0.01 165);
+  --sidebar-accent: oklch(0.24 0.03 240);
+  --sidebar-accent-foreground: oklch(0.92 0.01 165);
+  --sidebar-border: oklch(0.28 0.03 240);
+  --sidebar-ring: oklch(0.55 0.15 165);
 }
 
 @layer base {
@@ -92,13 +107,6 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Alef', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    line-height: 1.8;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    line-height: 1.2;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -142,28 +150,8 @@
     }
   }
   
-  /* Classical decorative elements */
+  /* Ornament divider for dark theme */
   .ornament-divider {
-    position: relative;
-    text-align: center;
-    margin: 3rem 0;
-  }
-  
-  .ornament-divider::before,
-  .ornament-divider::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 45%;
-    height: 1px;
-    background: linear-gradient(to right, transparent, #B8935E, transparent);
-  }
-  
-  .ornament-divider::before {
-    right: 55%;
-  }
-  
-  .ornament-divider::after {
-    left: 55%;
+    @apply flex justify-center my-4;
   }
 }

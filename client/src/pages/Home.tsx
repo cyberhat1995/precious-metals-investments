@@ -5,12 +5,16 @@
 */
 
 import Layout from "@/components/Layout";
+import PaymentWizard from "@/components/PaymentWizard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "wouter";
 import { Shield, TrendingUp, Award, Lock } from "lucide-react";
+import { useState } from "react";
 
 export default function Home() {
+  const [isPaymentOpen, setIsPaymentOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const heroImageUrl = "https://private-us-east-1.manuscdn.com/sessionFile/UNk7ISPWHA1O9gqF9GTYxZ/sandbox/UK90mnMTDc7dMW4WPDU7Lr-img-1_1770851776000_na1fn_aGVyby1nb2xkLWJhcnM.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvVU5rN0lTUFdIQTFPOWdxRjlHVFl4Wi9zYW5kYm94L1VLOTBtbk1URGM3ZE1XNFdQRFU3THItaW1nLTFfMTc3MDg1MTc3NjAwMF9uYTFmbl9hR1Z5YnkxbmIyeGtMV0poY25NLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzE5MjAsaF8xOTIwL2Zvcm1hdCx3ZWJwL3F1YWxpdHkscV84MCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5ODc2MTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=Kpv51TYKWwMq53Bc71Iv6pA3hIPTJ4ys~uTGDQkuurtfhuxO2kNvuI-P~DxbNqw6NiCbvq-bmPlwh6TgccqLQwm9fvpSbFH2BZLw7OqxXjdzugNwp0M7GKFNDbum2fej4vU6ecrtfmVDTDFQGl3sjl6cgtqJN5U7bLI1Jb~qhyonfOdcgWrMakPcWsfXIzxv2Ere6FOQBD6cQ5lJl~wGkCvLcvCCMEdq61QgfHfVpf2v~B-ABjputd87IJv9xgb8gpVT88rhMcsrBo5Ukq4ZianWW9ZVYd7r28jpQ7GFfx5hPXzMc5WKGfPBtW-tMzBWIL6-6qnUhpwjrUlKN~xXLw__";
   
   const silverCoinsUrl = "https://private-us-east-1.manuscdn.com/sessionFile/UNk7ISPWHA1O9gqF9GTYxZ/sandbox/UK90mnMTDc7dMW4WPDU7Lr-img-2_1770851809000_na1fn_c2lsdmVyLWNvaW5zLWNvbGxlY3Rpb24.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvVU5rN0lTUFdIQTFPOWdxRjlHVFl4Wi9zYW5kYm94L1VLOTBtbk1URGM3ZE1XNFdQRFU3THItaW1nLTJfMTc3MDg1MTgwOTAwMF9uYTFmbl9jMmxzZG1WeUxXTnZhVzV6TFdOdmJHeGxZM1JwYjI0LnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzE5MjAsaF8xOTIwL2Zvcm1hdCx3ZWJwL3F1YWxpdHkscV84MCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5ODc2MTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=vAaL0Pj5WcPkfuNn3B0LqVDTJnwsTfQY3y6cjL8MHnfWx7dosH~1mPvmBCY~5jW8RrT3aUWrpyfJRqzvDbwRSz5QJ4CTGlBxFIl-tS47G-46DuyyT~X0len2SgiTNfY3qWh7XBTeIZM9GD6S72kYa35v7GPvYQFXowVh4Ug3-nDKb83PsApKbqDCHs0rla0ZkOuEPta2dWK0xUjCNVog~JEJglSvd5UAJDJ5~gq7mYJWA1LOdrV4iiohM7AomcRDT3CK9~Y~8qYgMC289TgUt0AlJq5xw7LRfdA4hDT46MW30NLXLmEnUnSC7hocK396-wBgUrG5e5N7yhz6WutWYA__";
@@ -128,8 +132,15 @@ export default function Home() {
                   </div>
                 </CardContent>
                 <CardFooter className="p-6 pt-0 flex gap-2">
-                  <Button className="flex-1 bg-primary hover:bg-primary/90" size="lg">
-                    הוסף לסל
+                  <Button 
+                    className="flex-1 bg-primary hover:bg-primary/90" 
+                    size="lg"
+                    onClick={() => {
+                      setSelectedProduct(product);
+                      setIsPaymentOpen(true);
+                    }}
+                  >
+                    קנה עכשיו
                   </Button>
                   <Link href={`/product/${product.id}`}>
                     <Button variant="outline" className="flex-1" size="lg">
@@ -198,6 +209,22 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      {/* Payment Wizard */}
+      {selectedProduct && (
+        <PaymentWizard
+          open={isPaymentOpen}
+          onClose={() => {
+            setIsPaymentOpen(false);
+            setSelectedProduct(null);
+          }}
+          product={{
+            name: selectedProduct.name,
+            price: parseInt(selectedProduct.price.replace(/[^0-9]/g, '')),
+            image: selectedProduct.image
+          }}
+        />
+      )}
     </Layout>
   );
 }

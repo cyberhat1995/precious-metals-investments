@@ -6,14 +6,17 @@
 
 import Layout from "@/components/Layout";
 import ProductGallery from "@/components/ProductGallery";
+import PaymentWizard from "@/components/PaymentWizard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Shield, TrendingUp, Award, Package } from "lucide-react";
 import { Link } from "wouter";
+import { useState } from "react";
 
 export default function ProductDetail() {
+  const [isPaymentOpen, setIsPaymentOpen] = useState(false);
   const product = {
     id: 1,
     name: "מטבע כסף דרמי 100 - מהדורה מוגבלת",
@@ -123,10 +126,26 @@ export default function ProductDetail() {
                 <Button size="lg" className="flex-1 bg-primary hover:bg-primary/90 text-lg">
                   הוסף לסל
                 </Button>
-                <Button size="lg" variant="outline" className="flex-1 text-lg">
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="flex-1 text-lg"
+                  onClick={() => setIsPaymentOpen(true)}
+                >
                   קנה עכשיו
                 </Button>
               </div>
+
+              {/* Payment Wizard */}
+              <PaymentWizard
+                open={isPaymentOpen}
+                onClose={() => setIsPaymentOpen(false)}
+                product={{
+                  name: product.name,
+                  price: product.price,
+                  image: product.images[0]
+                }}
+              />
 
               {/* Specifications */}
               <Card>

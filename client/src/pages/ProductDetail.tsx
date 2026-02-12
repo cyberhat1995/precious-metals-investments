@@ -17,7 +17,7 @@ export default function ProductDetail() {
   const product = {
     id: 1,
     name: "מטבע כסף דרמי 100 - מהדורה מוגבלת",
-    price: 367.51,
+    price: 460,
     category: "silver",
     images: [
       "https://files.manuscdn.com/user_upload_by_module/session_file/310519663043088566/UuKfUrSKRsqWyLFT.png",
@@ -109,9 +109,9 @@ export default function ProductDetail() {
               <div className="bg-card p-6 rounded-lg border-2 border-primary/20">
                 <div className="flex items-baseline gap-3 mb-2">
                   <span className="text-4xl font-['Lora'] font-bold text-primary">
-                    ${product.price.toFixed(2)}
+                    ₪{product.price}
                   </span>
-                  <span className="text-muted-foreground">לאונקיה</span>
+                  <span className="text-muted-foreground">ליחידה</span>
                 </div>
                 <p className="text-sm text-muted-foreground">
                   * המחיר כולל מע\"ם ומשתנה בהתאם למחיר השוק

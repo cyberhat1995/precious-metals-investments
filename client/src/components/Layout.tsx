@@ -189,9 +189,9 @@ export default function Layout({ children }: LayoutProps) {
             <div>
               <h3 className="text-lg font-['Playfair_Display'] font-bold mb-4">צור קשר</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>טלפון: 054-9662323</li>
-                <li>אימייל: info@precious-metals.co.il</li>
-                <li>כתובת: תל אביב, ישראל</li>
+                <li>טלפון: 052-4700606</li>
+                <li>אימייל: diamondcohen213@gmail.com</li>
+                <li>כתובה: ז'בוטינסקי 3, רמת גן, ישראל</li>
               </ul>
             </div>
           </div>

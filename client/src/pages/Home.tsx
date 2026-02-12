@@ -19,7 +19,7 @@ export default function Home() {
     {
       id: 1,
       name: "מטבע כסף דרמי 100 - מהדורה מוגבלת",
-      price: "$367.51",
+      price: "₪460",
       image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663043088566/UuKfUrSKRsqWyLFT.png",
       description: "מטבע כסף טהור 999 במהדורה מוגבלת של 10,000 יחידות"
     }

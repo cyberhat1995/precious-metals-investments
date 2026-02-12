@@ -191,8 +191,8 @@ export default function Contact() {
                     </div>
                     <div>
                       <h3 className="font-semibold mb-1">טלפון</h3>
-                      <a href="tel:0549662323" className="text-muted-foreground hover:text-primary transition-colors">
-                        054-9662323
+                      <a href="tel:0524700606" className="text-muted-foreground hover:text-primary transition-colors">
+                        052-4700606
                       </a>
                     </div>
                   </div>
@@ -203,8 +203,8 @@ export default function Contact() {
                     </div>
                     <div>
                       <h3 className="font-semibold mb-1">אימייל</h3>
-                      <a href="mailto:info@precious-metals.co.il" className="text-muted-foreground hover:text-primary transition-colors break-all">
-                        info@precious-metals.co.il
+                      <a href="mailto:diamondcohen213@gmail.com" className="text-muted-foreground hover:text-primary transition-colors break-all">
+                        diamondcohen213@gmail.com
                       </a>
                     </div>
                   </div>
@@ -216,7 +216,7 @@ export default function Contact() {
                     <div>
                       <h3 className="font-semibold mb-1">כתובת</h3>
                       <p className="text-muted-foreground">
-                        תל אביב, ישראל
+                        ז'בוטינסקי 3, רמת גן, ישראל
                       </p>
                     </div>
                   </div>

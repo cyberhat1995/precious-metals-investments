@@ -15,10 +15,10 @@ import { Shield, TrendingUp, Award, Package } from "lucide-react";
 import { Link, useParams } from "wouter";
 import { useState } from "react";
 
-const EAGLE_FRONT = "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/silver-eagle-coin_1af2483b.png";
-const EAGLE_BACK  = "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/silver-eagle-coin-front_40ab9419.png";
-const MENORAH_FRONT = "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/menorah-coin_1712ff65.png";
-const MENORAH_BACK  = "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/menorah-coin-product_0cf29463.png";
+const EAGLE_FRONT = "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/eagle-coin-side1_8b8324e0.png";
+const EAGLE_BACK  = "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/eagle-coin-side2_2aa109c9.png";
+const MENORAH_FRONT = "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/menorah-coin-side1_2ced6b1b.png";
+const MENORAH_BACK  = "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/menorah-coin-side2_feaa1a9b.png";
 
 const allProducts: Record<string, {
   id: number;

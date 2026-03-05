@@ -12,8 +12,8 @@ import { Link } from "wouter";
 import { Shield, TrendingUp, Award, Lock } from "lucide-react";
 import { useState } from "react";
 
-const EAGLE_COIN_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/silver-eagle-coin_1af2483b.png";
-const MENORAH_COIN_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/menorah-coin_1712ff65.png";
+const EAGLE_COIN_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/eagle-coin-side1_8b8324e0.png";
+const MENORAH_COIN_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/menorah-coin-side1_2ced6b1b.png";
 
 export default function Home() {
   const [isPaymentOpen, setIsPaymentOpen] = useState(false);

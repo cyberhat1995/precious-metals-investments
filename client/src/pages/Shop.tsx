@@ -21,8 +21,29 @@ export default function Shop() {
       price: 460,
       category: "silver",
       image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663043088566/UuKfUrSKRsqWyLFT.png",
-      description: "מטבע כסף טהור 999 במהדורה מוגבלת של 10,000 יחידות",
-      inStock: true
+      description: "מטבע כסף טהור 999 במהדורה מוגבלת של 10,000 יחידות - עיצוב דו-צדדי ייחודי",
+      inStock: true,
+      badge: "מהדורה מוגבלת"
+    },
+    {
+      id: 2,
+      name: "מטבע עיט הכסף - מהדורה מיוחדת",
+      price: 460,
+      category: "silver",
+      image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/silver-eagle-coin_de47d4eb.png",
+      description: "הטבעה אמנותית של ראש עיט עוצמתי - כסף טהור 999, 1 אונקיה, מהמטבעה הרשמית של האמירויות",
+      inStock: true,
+      badge: "מהדורה מיוחדת"
+    },
+    {
+      id: 3,
+      name: "מטבע מנורה - מהדורה מיוחדת",
+      price: 460,
+      category: "silver",
+      image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/menorah-coin_14feb8fd.png",
+      description: "מנורת שבעת הקנים המסורתית - כסף טהור 999, 1 אונקיה, מהמטבעה הרשמית של האמירויות",
+      inStock: true,
+      badge: "מהדורה מיוחדת"
     }
   ];
 
@@ -103,13 +124,18 @@ export default function Shop() {
                       alt={product.name}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
+                    {product.badge && (
+                      <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
+                        {product.badge}
+                      </div>
+                    )}
                     {product.category === "gold" && (
-                      <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold">
+                      <div className="absolute top-4 left-4 bg-amber-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
                         זהב
                       </div>
                     )}
                     {product.category === "silver" && (
-                      <div className="absolute top-4 right-4 bg-accent text-accent-foreground px-3 py-1 rounded-full text-xs font-semibold">
+                      <div className="absolute top-4 left-4 bg-slate-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
                         כסף
                       </div>
                     )}

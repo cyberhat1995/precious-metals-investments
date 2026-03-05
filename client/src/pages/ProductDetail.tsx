@@ -1,4 +1,4 @@
-/* Product Detail Page
+/* Neo-Classical Product Detail Page
    - Full product information
    - Image gallery
    - Purchase options
@@ -8,25 +8,43 @@ import Layout from "@/components/Layout";
 import ProductGallery from "@/components/ProductGallery";
 import PaymentWizard from "@/components/PaymentWizard";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Shield, TrendingUp, Award, Package } from "lucide-react";
-import { Link } from "wouter";
+import { Link, useParams } from "wouter";
 import { useState } from "react";
 
-export default function ProductDetail() {
-  const [isPaymentOpen, setIsPaymentOpen] = useState(false);
-  const product = {
+const allProducts: Record<string, {
+  id: number;
+  name: string;
+  price: number;
+  category: string;
+  badge: string;
+  images: string[];
+  description: string;
+  weight: string;
+  purity: string;
+  diameter: string;
+  thickness: string;
+  mintage: string;
+  manufacturer: string;
+  inStock: boolean;
+  features: string[];
+  sideA: string;
+  sideB: string;
+}> = {
+  "1": {
     id: 1,
     name: "מטבע כסף דרמי 100 - מהדורה מוגבלת",
     price: 460,
     category: "silver",
+    badge: "מהדורה מוגבלת",
     images: [
       "https://files.manuscdn.com/user_upload_by_module/session_file/310519663043088566/UuKfUrSKRsqWyLFT.png",
       "https://files.manuscdn.com/user_upload_by_module/session_file/310519663043088566/XGCepBfEWHPOACTu.png"
     ],
-    description: "מטבע כסף טהור 999 במהדורה מוגבלת של 10,000 יחידות בלבד. המטבע מציג עיצובים ייחודיים משני צדדים - נמר ומנורה.",
+    description: "מטבע כסף טהור 999 במהדורה מוגבלת של 10,000 יחידות בלבד. המטבע מציג עיצובים ייחודיים משני צדדים - מנורת ירושלים ורימון.",
     weight: "31.1 גרם (1 אונקיה)",
     purity: "999 כסף טהור",
     diameter: "39 מ\"מ",
@@ -40,31 +58,96 @@ export default function ProductDetail() {
       "עיצוב דו-צדדי ייחודי",
       "מגיע עם תעודת אמינות",
       "אריזה מקורית מהמנטה"
-    ]
-  };
+    ],
+    sideA: "במרכז המטבע מנורת שבעת הקנים המסורתית המוקפת בענפי זית, תחת הכיתוב \"JERUSALEM\" וערך נקוב של \"100 DREMT\" בגימור קלוע יוקרתי.",
+    sideB: "איור אמנותי של רימון בשל על ענף, מלווה בכיתוב \"Limited Edition 10,000 Coins\" ומפרט טכני של אונקיית כסף טהור 999."
+  },
+  "2": {
+    id: 2,
+    name: "מטבע עיט הכסף - מהדורה מיוחדת",
+    price: 460,
+    category: "silver",
+    badge: "מהדורה מיוחדת",
+    images: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/silver-eagle-coin_de47d4eb.png",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/silver-eagle-coin-front_9849694a.png"
+    ],
+    description: "הטבעה אמנותית של ראש עיט עוצמתי מהמטבעה הרשמית של האמירויות. כסף טהור 999, 1 אונקיה, עיצוב ייחודי ומרשים.",
+    weight: "31.1 גרם (1 אונקיה)",
+    purity: "999 כסף טהור",
+    diameter: "39 מ\"מ",
+    thickness: "3 מ\"מ",
+    mintage: "מהדורה מיוחדת",
+    manufacturer: "Emirates Gold",
+    inStock: true,
+    features: [
+      "מהדורה מיוחדת מהמטבעה הרשמית של האמירויות",
+      "כסף טהור 999",
+      "עיצוב אמנותי ייחודי של עיט עוצמתי",
+      "מגיע עם תעודת אמינות",
+      "אריזה מקורית מהמנטה"
+    ],
+    sideA: "הטבעה אומנותית של ראש עיט עוצמתי תחת הכיתוב \"EMIRATES GOLD\", מוקף בעיטור כוכבים ועלי דפנה.",
+    sideB: "איור עדין ומפורט של פרח הורד, לצד מפרט טכני של אונקיית כסף טהור 999."
+  },
+  "3": {
+    id: 3,
+    name: "מטבע מנורה - מהדורה מיוחדת",
+    price: 460,
+    category: "silver",
+    badge: "מהדורה מיוחדת",
+    images: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/menorah-coin_14feb8fd.png",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/menorah-coin-product_2c6e7de0.png"
+    ],
+    description: "מנורת שבעת הקנים המסורתית מהמטבעה הרשמית של האמירויות. כסף טהור 999, 1 אונקיה, עיצוב ירושלמי ייחודי.",
+    weight: "31.1 גרם (1 אונקיה)",
+    purity: "999 כסף טהור",
+    diameter: "39 מ\"מ",
+    thickness: "3 מ\"מ",
+    mintage: "מהדורה מיוחדת",
+    manufacturer: "Emirates Gold",
+    inStock: true,
+    features: [
+      "מהדורה מיוחדת מהמטבעה הרשמית של האמירויות",
+      "כסף טהור 999",
+      "עיצוב מנורת ירושלים הייחודי",
+      "מגיע עם תעודת אמינות",
+      "אריזה מקורית מהמנטה"
+    ],
+    sideA: "במרכז המטבע מנורת שבעת הקנים המסורתית המוקפת בענפי זית, תחת הכיתוב \"JERUSALEM\" וערך נקוב של \"100 DREMT\" בגימור קלוע יוקרתי.",
+    sideB: "איור אמנותי של רימון בשל על ענף, מלווה בכיתוב \"Limited Edition 10,000 Coins\" ומפרט טכני של אונקיית כסף טהור 999."
+  }
+};
 
-  const benefits = [
-    {
-      icon: Shield,
-      title: "אמינות מובטחת",
-      description: "כל מטבע מגיע עם תעודת אמינות מהמנטה"
-    },
-    {
-      icon: TrendingUp,
-      title: "השקעה חכמה",
-      description: "מטבעות מוגבלים נוטים לעלות בערכם לאורך זמן"
-    },
-    {
-      icon: Award,
-      title: "איכות פרימיום",
-      description: "ייצור ברמה הגבוהה ביותר"
-    },
-    {
-      icon: Package,
-      title: "אריזה מקורית",
-      description: "נשמר באריזה מקורית מהמנטה"
-    }
-  ];
+const benefits = [
+  {
+    icon: Shield,
+    title: "אמינות מובטחת",
+    description: "כל מטבע מגיע עם תעודת אמינות מהמנטה"
+  },
+  {
+    icon: TrendingUp,
+    title: "השקעה חכמה",
+    description: "מטבעות מיוחדים נוטים לעלות בערכם לאורך זמן"
+  },
+  {
+    icon: Award,
+    title: "איכות פרימיום",
+    description: "ייצור ברמה הגבוהה ביותר"
+  },
+  {
+    icon: Package,
+    title: "אריזה מקורית",
+    description: "נשמר באריזה מקורית מהמנטה"
+  }
+];
+
+export default function ProductDetail() {
+  const [isPaymentOpen, setIsPaymentOpen] = useState(false);
+  const params = useParams<{ id: string }>();
+  const productId = params?.id ?? "1";
+  const product = allProducts[productId] ?? allProducts["1"];
 
   return (
     <Layout>
@@ -97,7 +180,10 @@ export default function ProductDetail() {
             {/* Product Info */}
             <div className="space-y-6">
               <div>
-                <Badge className="mb-4 bg-accent text-accent-foreground">כסף</Badge>
+                <div className="flex gap-2 mb-4">
+                  <Badge className="bg-accent text-accent-foreground">כסף</Badge>
+                  <Badge className="bg-primary text-primary-foreground">{product.badge}</Badge>
+                </div>
                 <h1 className="text-3xl lg:text-4xl font-['Playfair_Display'] font-bold text-foreground mb-4">
                   {product.name}
                 </h1>
@@ -114,10 +200,10 @@ export default function ProductDetail() {
                   <span className="text-4xl font-['Lora'] font-bold text-primary">
                     ₪{product.price}
                   </span>
-                  <span className="text-muted-foreground">ליחידה</span>
+                  <span className="text-muted-foreground">ליחידה (כולל מע"מ)</span>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  * המחיר כולל מע\"ם ומשתנה בהתאם למחיר השוק
+                  * המחיר משתנה בהתאם למחיר השוק
                 </p>
               </div>
 
@@ -129,7 +215,7 @@ export default function ProductDetail() {
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="flex-1 text-lg"
+                  className="flex-1 text-lg border-primary text-primary hover:bg-primary hover:text-primary-foreground"
                   onClick={() => setIsPaymentOpen(true)}
                 >
                   קנה עכשיו
@@ -180,6 +266,24 @@ export default function ProductDetail() {
                 </CardContent>
               </Card>
 
+              {/* Design Description */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-['Playfair_Display']">תיאור העיצוב</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <p className="text-sm font-semibold text-primary mb-1">צד קדמי:</p>
+                    <p className="text-muted-foreground font-['Cormorant_Garamond'] text-base leading-relaxed">{product.sideA}</p>
+                  </div>
+                  <Separator />
+                  <div>
+                    <p className="text-sm font-semibold text-primary mb-1">צד אחורי:</p>
+                    <p className="text-muted-foreground font-['Cormorant_Garamond'] text-base leading-relaxed">{product.sideB}</p>
+                  </div>
+                </CardContent>
+              </Card>
+
               {/* Features */}
               <Card>
                 <CardHeader>
@@ -203,28 +307,25 @@ export default function ProductDetail() {
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="py-16 bg-secondary">
+      {/* Benefits */}
+      <section className="py-12 bg-secondary">
         <div className="container">
-          <h2 className="text-3xl font-['Playfair_Display'] font-bold text-center mb-12">
-            למה לרכוש מטבע זה?
+          <h2 className="text-2xl font-['Playfair_Display'] font-bold text-center mb-8">
+            למה לקנות אצלנו?
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {benefits.map((benefit, index) => (
-              <Card key={index} className="text-center">
-                <CardContent className="pt-6">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-                    <benefit.icon className="w-8 h-8 text-primary" />
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {benefits.map((benefit, index) => {
+              const Icon = benefit.icon;
+              return (
+                <div key={index} className="text-center p-4">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
+                    <Icon className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-['Playfair_Display'] font-semibold text-lg mb-2">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground font-['Cormorant_Garamond']">
-                    {benefit.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
+                  <h3 className="font-semibold mb-1 text-sm">{benefit.title}</h3>
+                  <p className="text-xs text-muted-foreground">{benefit.description}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

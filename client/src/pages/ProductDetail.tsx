@@ -1,6 +1,6 @@
 /* Neo-Classical Product Detail Page
    - Full product information
-   - Image gallery
+   - Image gallery with fresh CDN URLs
    - Purchase options
 */
 
@@ -14,6 +14,11 @@ import { Separator } from "@/components/ui/separator";
 import { Shield, TrendingUp, Award, Package } from "lucide-react";
 import { Link, useParams } from "wouter";
 import { useState } from "react";
+
+const EAGLE_FRONT = "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/silver-eagle-coin_1af2483b.png";
+const EAGLE_BACK  = "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/silver-eagle-coin-front_40ab9419.png";
+const MENORAH_FRONT = "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/menorah-coin_1712ff65.png";
+const MENORAH_BACK  = "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/menorah-coin-product_0cf29463.png";
 
 const allProducts: Record<string, {
   id: number;
@@ -34,44 +39,13 @@ const allProducts: Record<string, {
   sideA: string;
   sideB: string;
 }> = {
-  "1": {
-    id: 1,
-    name: "מטבע כסף דרמי 100 - מהדורה מוגבלת",
-    price: 460,
-    category: "silver",
-    badge: "מהדורה מוגבלת",
-    images: [
-      "https://files.manuscdn.com/user_upload_by_module/session_file/310519663043088566/UuKfUrSKRsqWyLFT.png",
-      "https://files.manuscdn.com/user_upload_by_module/session_file/310519663043088566/XGCepBfEWHPOACTu.png"
-    ],
-    description: "מטבע כסף טהור 999 במהדורה מוגבלת של 10,000 יחידות בלבד. המטבע מציג עיצובים ייחודיים משני צדדים - מנורת ירושלים ורימון.",
-    weight: "31.1 גרם (1 אונקיה)",
-    purity: "999 כסף טהור",
-    diameter: "39 מ\"מ",
-    thickness: "3 מ\"מ",
-    mintage: "10,000 יחידות",
-    manufacturer: "Emirates Gold",
-    inStock: true,
-    features: [
-      "מהדורה מוגבלת של 10,000 יחידות בלבד",
-      "כסף טהור 999",
-      "עיצוב דו-צדדי ייחודי",
-      "מגיע עם תעודת אמינות",
-      "אריזה מקורית מהמנטה"
-    ],
-    sideA: "במרכז המטבע מנורת שבעת הקנים המסורתית המוקפת בענפי זית, תחת הכיתוב \"JERUSALEM\" וערך נקוב של \"100 DREMT\" בגימור קלוע יוקרתי.",
-    sideB: "איור אמנותי של רימון בשל על ענף, מלווה בכיתוב \"Limited Edition 10,000 Coins\" ומפרט טכני של אונקיית כסף טהור 999."
-  },
   "2": {
     id: 2,
     name: "מטבע עיט הכסף - מהדורה מיוחדת",
     price: 460,
     category: "silver",
     badge: "מהדורה מיוחדת",
-    images: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/silver-eagle-coin_de47d4eb.png",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/silver-eagle-coin-front_9849694a.png"
-    ],
+    images: [EAGLE_FRONT, EAGLE_BACK],
     description: "הטבעה אמנותית של ראש עיט עוצמתי מהמטבעה הרשמית של האמירויות. כסף טהור 999, 1 אונקיה, עיצוב ייחודי ומרשים.",
     weight: "31.1 גרם (1 אונקיה)",
     purity: "999 כסף טהור",
@@ -87,7 +61,7 @@ const allProducts: Record<string, {
       "מגיע עם תעודת אמינות",
       "אריזה מקורית מהמנטה"
     ],
-    sideA: "הטבעה אומנותית של ראש עיט עוצמתי תחת הכיתוב \"EMIRATES GOLD\", מוקף בעיטור כוכבים ועלי דפנה.",
+    sideA: "הטבעה אמנותית של ראש עיט עוצמתי תחת הכיתוב \"EMIRATES GOLD\", מוקף בעיטור כוכבים ועלי דפנה.",
     sideB: "איור עדין ומפורט של פרח הורד, לצד מפרט טכני של אונקיית כסף טהור 999."
   },
   "3": {
@@ -96,10 +70,7 @@ const allProducts: Record<string, {
     price: 460,
     category: "silver",
     badge: "מהדורה מיוחדת",
-    images: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/menorah-coin_14feb8fd.png",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/menorah-coin-product_2c6e7de0.png"
-    ],
+    images: [MENORAH_FRONT, MENORAH_BACK],
     description: "מנורת שבעת הקנים המסורתית מהמטבעה הרשמית של האמירויות. כסף טהור 999, 1 אונקיה, עיצוב ירושלמי ייחודי.",
     weight: "31.1 גרם (1 אונקיה)",
     purity: "999 כסף טהור",
@@ -121,33 +92,17 @@ const allProducts: Record<string, {
 };
 
 const benefits = [
-  {
-    icon: Shield,
-    title: "אמינות מובטחת",
-    description: "כל מטבע מגיע עם תעודת אמינות מהמנטה"
-  },
-  {
-    icon: TrendingUp,
-    title: "השקעה חכמה",
-    description: "מטבעות מיוחדים נוטים לעלות בערכם לאורך זמן"
-  },
-  {
-    icon: Award,
-    title: "איכות פרימיום",
-    description: "ייצור ברמה הגבוהה ביותר"
-  },
-  {
-    icon: Package,
-    title: "אריזה מקורית",
-    description: "נשמר באריזה מקורית מהמנטה"
-  }
+  { icon: Shield, title: "אמינות מובטחת", description: "כל מטבע מגיע עם תעודת אמינות מהמנטה" },
+  { icon: TrendingUp, title: "השקעה חכמה", description: "מטבעות מיוחדים נוטים לעלות בערכם לאורך זמן" },
+  { icon: Award, title: "איכות פרימיום", description: "ייצור ברמה הגבוהה ביותר" },
+  { icon: Package, title: "אריזה מקורית", description: "נשמר באריזה מקורית מהמנטה" }
 ];
 
 export default function ProductDetail() {
   const [isPaymentOpen, setIsPaymentOpen] = useState(false);
   const params = useParams<{ id: string }>();
-  const productId = params?.id ?? "1";
-  const product = allProducts[productId] ?? allProducts["1"];
+  const productId = params?.id ?? "2";
+  const product = allProducts[productId] ?? allProducts["2"];
 
   return (
     <Layout>
@@ -155,13 +110,9 @@ export default function ProductDetail() {
       <section className="bg-secondary py-4">
         <div className="container">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Link href="/">
-              <a className="hover:text-primary transition-colors">דף הבית</a>
-            </Link>
+            <Link href="/"><a className="hover:text-primary transition-colors">דף הבית</a></Link>
             <span>/</span>
-            <Link href="/shop">
-              <a className="hover:text-primary transition-colors">חנות</a>
-            </Link>
+            <Link href="/shop"><a className="hover:text-primary transition-colors">חנות</a></Link>
             <span>/</span>
             <span className="text-foreground">{product.name}</span>
           </div>
@@ -181,7 +132,7 @@ export default function ProductDetail() {
             <div className="space-y-6">
               <div>
                 <div className="flex gap-2 mb-4">
-                  <Badge className="bg-accent text-accent-foreground">כסף</Badge>
+                  <Badge className="bg-slate-600 text-white">כסף</Badge>
                   <Badge className="bg-primary text-primary-foreground">{product.badge}</Badge>
                 </div>
                 <h1 className="text-3xl lg:text-4xl font-['Playfair_Display'] font-bold text-foreground mb-4">
@@ -197,14 +148,10 @@ export default function ProductDetail() {
               {/* Price */}
               <div className="bg-card p-6 rounded-lg border-2 border-primary/20">
                 <div className="flex items-baseline gap-3 mb-2">
-                  <span className="text-4xl font-['Lora'] font-bold text-primary">
-                    ₪{product.price}
-                  </span>
+                  <span className="text-4xl font-['Lora'] font-bold text-primary">₪{product.price}</span>
                   <span className="text-muted-foreground">ליחידה (כולל מע"מ)</span>
                 </div>
-                <p className="text-sm text-muted-foreground">
-                  * המחיר משתנה בהתאם למחיר השוק
-                </p>
+                <p className="text-sm text-muted-foreground">* המחיר משתנה בהתאם למחיר השוק</p>
               </div>
 
               {/* Purchase Buttons */}
@@ -212,9 +159,9 @@ export default function ProductDetail() {
                 <Button size="lg" className="flex-1 bg-primary hover:bg-primary/90 text-lg">
                   הוסף לסל
                 </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline" 
+                <Button
+                  size="lg"
+                  variant="outline"
                   className="flex-1 text-lg border-primary text-primary hover:bg-primary hover:text-primary-foreground"
                   onClick={() => setIsPaymentOpen(true)}
                 >
@@ -226,11 +173,7 @@ export default function ProductDetail() {
               <PaymentWizard
                 open={isPaymentOpen}
                 onClose={() => setIsPaymentOpen(false)}
-                product={{
-                  name: product.name,
-                  price: product.price,
-                  image: product.images[0]
-                }}
+                product={{ name: product.name, price: product.price, image: product.images[0] }}
               />
 
               {/* Specifications */}
@@ -239,30 +182,19 @@ export default function ProductDetail() {
                   <CardTitle className="font-['Playfair_Display']">מפרט טכני</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <div className="flex justify-between py-2 border-b border-border">
-                    <span className="text-muted-foreground">משקל</span>
-                    <span className="font-semibold">{product.weight}</span>
-                  </div>
-                  <div className="flex justify-between py-2 border-b border-border">
-                    <span className="text-muted-foreground">טוהר</span>
-                    <span className="font-semibold">{product.purity}</span>
-                  </div>
-                  <div className="flex justify-between py-2 border-b border-border">
-                    <span className="text-muted-foreground">קוטר</span>
-                    <span className="font-semibold">{product.diameter}</span>
-                  </div>
-                  <div className="flex justify-between py-2 border-b border-border">
-                    <span className="text-muted-foreground">עובי</span>
-                    <span className="font-semibold">{product.thickness}</span>
-                  </div>
-                  <div className="flex justify-between py-2 border-b border-border">
-                    <span className="text-muted-foreground">מהדורה</span>
-                    <span className="font-semibold text-primary">{product.mintage}</span>
-                  </div>
-                  <div className="flex justify-between py-2">
-                    <span className="text-muted-foreground">יצרן</span>
-                    <span className="font-semibold">{product.manufacturer}</span>
-                  </div>
+                  {[
+                    ["משקל", product.weight],
+                    ["טוהר", product.purity],
+                    ["קוטר", product.diameter],
+                    ["עובי", product.thickness],
+                    ["מהדורה", product.mintage],
+                    ["יצרן", product.manufacturer]
+                  ].map(([label, value], i, arr) => (
+                    <div key={label} className={`flex justify-between py-2 ${i < arr.length - 1 ? "border-b border-border" : ""}`}>
+                      <span className="text-muted-foreground">{label}</span>
+                      <span className={`font-semibold ${label === "מהדורה" ? "text-primary" : ""}`}>{value}</span>
+                    </div>
+                  ))}
                 </CardContent>
               </Card>
 
@@ -294,9 +226,7 @@ export default function ProductDetail() {
                     {product.features.map((feature, index) => (
                       <li key={index} className="flex items-start gap-2">
                         <span className="text-primary mt-1">✓</span>
-                        <span className="text-muted-foreground font-['Cormorant_Garamond']">
-                          {feature}
-                        </span>
+                        <span className="text-muted-foreground font-['Cormorant_Garamond']">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -310,9 +240,7 @@ export default function ProductDetail() {
       {/* Benefits */}
       <section className="py-12 bg-secondary">
         <div className="container">
-          <h2 className="text-2xl font-['Playfair_Display'] font-bold text-center mb-8">
-            למה לקנות אצלנו?
-          </h2>
+          <h2 className="text-2xl font-['Playfair_Display'] font-bold text-center mb-8">למה לקנות אצלנו?</h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((benefit, index) => {
               const Icon = benefit.icon;

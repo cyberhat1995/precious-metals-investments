@@ -1,7 +1,7 @@
-/* Neo-Classical Elegance Home Page
-   - Symmetrical hero with elegant imagery
+/* Neo-Classical Home Page
+   - Dark theme with emerald and burgundy
+   - Hero shows the two actual silver coin products
    - Product showcase with classical card design
-   - Services section with balanced layout
 */
 
 import Layout from "@/components/Layout";
@@ -12,26 +12,28 @@ import { Link } from "wouter";
 import { Shield, TrendingUp, Award, Lock } from "lucide-react";
 import { useState } from "react";
 
+const EAGLE_COIN_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/silver-eagle-coin_1af2483b.png";
+const MENORAH_COIN_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/menorah-coin_1712ff65.png";
+
 export default function Home() {
   const [isPaymentOpen, setIsPaymentOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
-  const heroImageUrl = "https://private-us-east-1.manuscdn.com/sessionFile/UNk7ISPWHA1O9gqF9GTYxZ/sandbox/UK90mnMTDc7dMW4WPDU7Lr-img-1_1770851776000_na1fn_aGVyby1nb2xkLWJhcnM.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvVU5rN0lTUFdIQTFPOWdxRjlHVFl4Wi9zYW5kYm94L1VLOTBtbk1URGM3ZE1XNFdQRFU3THItaW1nLTFfMTc3MDg1MTc3NjAwMF9uYTFmbl9hR1Z5YnkxbmIyeGtMV0poY25NLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzE5MjAsaF8xOTIwL2Zvcm1hdCx3ZWJwL3F1YWxpdHkscV84MCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5ODc2MTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=Kpv51TYKWwMq53Bc71Iv6pA3hIPTJ4ys~uTGDQkuurtfhuxO2kNvuI-P~DxbNqw6NiCbvq-bmPlwh6TgccqLQwm9fvpSbFH2BZLw7OqxXjdzugNwp0M7GKFNDbum2fej4vU6ecrtfmVDTDFQGl3sjl6cgtqJN5U7bLI1Jb~qhyonfOdcgWrMakPcWsfXIzxv2Ere6FOQBD6cQ5lJl~wGkCvLcvCCMEdq61QgfHfVpf2v~B-ABjputd87IJv9xgb8gpVT88rhMcsrBo5Ukq4ZianWW9ZVYd7r28jpQ7GFfx5hPXzMc5WKGfPBtW-tMzBWIL6-6qnUhpwjrUlKN~xXLw__";
-  
-  const silverCoinsUrl = "https://private-us-east-1.manuscdn.com/sessionFile/UNk7ISPWHA1O9gqF9GTYxZ/sandbox/UK90mnMTDc7dMW4WPDU7Lr-img-2_1770851809000_na1fn_c2lsdmVyLWNvaW5zLWNvbGxlY3Rpb24.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvVU5rN0lTUFdIQTFPOWdxRjlHVFl4Wi9zYW5kYm94L1VLOTBtbk1URGM3ZE1XNFdQRFU3THItaW1nLTJfMTc3MDg1MTgwOTAwMF9uYTFmbl9jMmxzZG1WeUxXTnZhVzV6TFdOdmJHeGxZM1JwYjI0LnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzE5MjAsaF8xOTIwL2Zvcm1hdCx3ZWJwL3F1YWxpdHkscV84MCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5ODc2MTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=vAaL0Pj5WcPkfuNn3B0LqVDTJnwsTfQY3y6cjL8MHnfWx7dosH~1mPvmBCY~5jW8RrT3aUWrpyfJRqzvDbwRSz5QJ4CTGlBxFIl-tS47G-46DuyyT~X0len2SgiTNfY3qWh7XBTeIZM9GD6S72kYa35v7GPvYQFXowVh4Ug3-nDKb83PsApKbqDCHs0rla0ZkOuEPta2dWK0xUjCNVog~JEJglSvd5UAJDJ5~gq7mYJWA1LOdrV4iiohM7AomcRDT3CK9~Y~8qYgMC289TgUt0AlJq5xw7LRfdA4hDT46MW30NLXLmEnUnSC7hocK396-wBgUrG5e5N7yhz6WutWYA__";
 
   const products = [
     {
       id: 2,
       name: "מטבע עיט הכסף - מהדורה מיוחדת",
       price: "₪460",
-      image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/silver-eagle-coin_de47d4eb.png",
+      priceNum: 460,
+      image: EAGLE_COIN_IMG,
       description: "הטבעה אמנותית של ראש עיט עוצמתי - כסף טהור 999, 1 אונקיה"
     },
     {
       id: 3,
       name: "מטבע מנורה - מהדורה מיוחדת",
       price: "₪460",
-      image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/menorah-coin_14feb8fd.png",
+      priceNum: 460,
+      image: MENORAH_COIN_IMG,
       description: "מנורת שבעת הקנים המסורתית - כסף טהור 999, 1 אונקיה"
     }
   ];
@@ -71,7 +73,7 @@ export default function Home() {
                 <span className="block text-primary mt-2">עם מתכות יקרות</span>
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed font-['Cormorant_Garamond']">
-                זהב וכסף הם נכסים יציבים שעומדים במבחן הזמן. אנו מציעים מגוון רחב של מוצרי השקעה איכוtiים עם שירות מקצועי ואמין.
+                מטבעות כסף טהור 999 ממנטת Emirates Gold במהדורות מיוחדות. כל מטבע מגיע עם תעודת אמינות ואריזה מקורית.
               </p>
               <div className="flex flex-wrap gap-4 pt-4">
                 <Link href="/shop">
@@ -87,17 +89,23 @@ export default function Home() {
               </div>
             </div>
             <div className="relative animate-fadeIn animation-delay-200">
-              <div className="relative rounded-lg overflow-hidden shadow-2xl border-4 border-primary/20 grid grid-cols-2 gap-3 p-4 bg-secondary">
-                <img
-                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/silver-eagle-coin_de47d4eb.png"
-                  alt="מטבע עיט הכסף"
-                  className="w-full h-auto object-contain rounded-lg hover:scale-105 transition-transform duration-500"
-                />
-                <img
-                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/menorah-coin_14feb8fd.png"
-                  alt="מטבע מנורה"
-                  className="w-full h-auto object-contain rounded-lg hover:scale-105 transition-transform duration-500"
-                />
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-primary/20 grid grid-cols-2 gap-4 p-6 bg-secondary/80 backdrop-blur">
+                <div className="flex flex-col items-center gap-2">
+                  <img
+                    src={EAGLE_COIN_IMG}
+                    alt="מטבע עיט הכסף"
+                    className="w-full h-auto object-contain rounded-xl hover:scale-105 transition-transform duration-500 drop-shadow-lg"
+                  />
+                  <span className="text-xs text-muted-foreground font-['Cormorant_Garamond'] text-center">מטבע עיט הכסף</span>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <img
+                    src={MENORAH_COIN_IMG}
+                    alt="מטבע מנורה"
+                    className="w-full h-auto object-contain rounded-xl hover:scale-105 transition-transform duration-500 drop-shadow-lg"
+                  />
+                  <span className="text-xs text-muted-foreground font-['Cormorant_Garamond'] text-center">מטבע מנורה</span>
+                </div>
               </div>
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
               <div className="absolute -top-6 -left-6 w-32 h-32 bg-accent/10 rounded-full blur-3xl"></div>
@@ -113,23 +121,24 @@ export default function Home() {
             <h2 className="text-3xl lg:text-5xl font-['Playfair_Display'] font-bold text-foreground mb-4">
               מוצרים נבחרים
             </h2>
-            <div className="ornament-divider">
+            <div className="flex justify-center gap-2 my-4">
               <span className="inline-block w-12 h-1 bg-primary rounded"></span>
+              <span className="inline-block w-3 h-1 bg-primary/50 rounded"></span>
             </div>
-            <p className="text-muted-foreground font-['Cormorant_Garamond'] text-lg mt-6 max-w-2xl mx-auto">
-              מבחר מוצרי השקעה איכותיים ממנטות מוכרות בעולם
+            <p className="text-muted-foreground font-['Cormorant_Garamond'] text-lg mt-4 max-w-2xl mx-auto">
+              מטבעות כסף טהור ממנטת Emirates Gold - מהדורות מיוחדות בלבד
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
             {products.map((product) => (
               <Card key={product.id} className="group hover:shadow-xl transition-all duration-500 border-2 hover:border-primary/30">
                 <CardHeader className="p-0">
-                  <div className="relative overflow-hidden rounded-t-lg aspect-square">
+                  <div className="relative overflow-hidden rounded-t-lg aspect-square bg-secondary/50">
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      className="w-full h-full object-contain p-4 group-hover:scale-110 transition-transform duration-700"
                     />
                   </div>
                 </CardHeader>
@@ -140,12 +149,12 @@ export default function Home() {
                   </CardDescription>
                   <div className="mt-4 flex items-baseline gap-2">
                     <span className="text-2xl font-['Lora'] font-bold text-primary">{product.price}</span>
-                    <span className="text-sm text-muted-foreground">ליחידה</span>
+                    <span className="text-sm text-muted-foreground">ליחידה (כולל מע"מ)</span>
                   </div>
                 </CardContent>
                 <CardFooter className="p-6 pt-0 flex gap-2">
-                  <Button 
-                    className="flex-1 bg-primary hover:bg-primary/90" 
+                  <Button
+                    className="flex-1 bg-primary hover:bg-primary/90"
                     size="lg"
                     onClick={() => {
                       setSelectedProduct(product);
@@ -155,7 +164,7 @@ export default function Home() {
                     קנה עכשיו
                   </Button>
                   <Link href={`/product/${product.id}`}>
-                    <Button variant="outline" className="flex-1" size="lg">
+                    <Button variant="outline" className="flex-1 border-primary text-primary hover:bg-primary hover:text-primary-foreground" size="lg">
                       פרטים
                     </Button>
                   </Link>
@@ -164,61 +173,66 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-10">
             <Link href="/shop">
-              <Button variant="outline" size="lg" className="font-semibold px-8">
-                צפה בכל המוצרים
+              <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-10">
+                לכל המוצרים בחנות
               </Button>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Services */}
       <section className="py-20 bg-secondary">
         <div className="container">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-5xl font-['Playfair_Display'] font-bold text-foreground mb-4">
-              למה לבחור בנו
+            <h2 className="text-3xl lg:text-4xl font-['Playfair_Display'] font-bold text-foreground mb-4">
+              למה לבחור בנו?
             </h2>
-            <div className="ornament-divider">
-              <span className="inline-block w-12 h-1 bg-primary rounded"></span>
-            </div>
           </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service, index) => (
-              <div
-                key={index}
-                className="text-center p-6 bg-card rounded-lg border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-500"
-              >
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-                  <service.icon className="w-8 h-8 text-primary" />
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {services.map((service, index) => {
+              const Icon = service.icon;
+              return (
+                <div key={index} className="text-center p-6 rounded-lg bg-background/50 hover:bg-background transition-colors duration-300">
+                  <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                    <Icon className="w-7 h-7 text-primary" />
+                  </div>
+                  <h3 className="font-['Playfair_Display'] font-semibold text-lg mb-2">{service.title}</h3>
+                  <p className="text-sm text-muted-foreground font-['Cormorant_Garamond'] text-base leading-relaxed">
+                    {service.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-['Playfair_Display'] font-semibold mb-3">{service.title}</h3>
-                <p className="text-muted-foreground font-['Cormorant_Garamond'] leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-accent text-accent-foreground">
-        <div className="container text-center">
-          <h2 className="text-3xl lg:text-5xl font-['Playfair_Display'] font-bold mb-6">
-            מוכנים להתחיל להשקיע?
-          </h2>
-          <p className="text-lg font-['Cormorant_Garamond'] mb-8 max-w-2xl mx-auto opacity-90">
-            צרו איתנו קשר עוד היום וקבלו ייעוץ מקצועי להשקעה במתכות יקרות
-          </p>
-          <Link href="/contact">
-            <Button size="lg" variant="secondary" className="font-semibold px-8">
-              צור קשר עכשיו
-            </Button>
-          </Link>
+      <section className="py-20 bg-background">
+        <div className="container">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
+            <h2 className="text-3xl lg:text-4xl font-['Playfair_Display'] font-bold text-foreground">
+              מוכנים להשקיע?
+            </h2>
+            <p className="text-lg text-muted-foreground font-['Cormorant_Garamond']">
+              צרו איתנו קשר לייעוץ אישי ומקצועי ללא עלות
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link href="/shop">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-10">
+                  לחנות המוצרים
+                </Button>
+              </Link>
+              <Link href="/contact">
+                <Button size="lg" variant="outline" className="font-semibold px-10">
+                  צור קשר
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -226,13 +240,10 @@ export default function Home() {
       {selectedProduct && (
         <PaymentWizard
           open={isPaymentOpen}
-          onClose={() => {
-            setIsPaymentOpen(false);
-            setSelectedProduct(null);
-          }}
+          onClose={() => setIsPaymentOpen(false)}
           product={{
             name: selectedProduct.name,
-            price: parseInt(selectedProduct.price.replace(/[^0-9]/g, '')),
+            price: selectedProduct.priceNum,
             image: selectedProduct.image
           }}
         />

@@ -1,18 +1,22 @@
 /* Neo-Classical Shop Page
-   - Product grid with filtering
-   - Classical card design with elegant imagery
+   - Dark theme with emerald and burgundy
+   - Two silver coin products only
 */
 
 import Layout from "@/components/Layout";
+import PaymentWizard from "@/components/PaymentWizard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import { useState } from "react";
 
+const EAGLE_COIN_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/silver-eagle-coin_1af2483b.png";
+const MENORAH_COIN_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/menorah-coin_1712ff65.png";
+
 export default function Shop() {
-  const [category, setCategory] = useState("all");
-  const [sortBy, setSortBy] = useState("featured");
+  const [isPaymentOpen, setIsPaymentOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
 
   const products = [
     {
@@ -20,8 +24,8 @@ export default function Shop() {
       name: "מטבע עיט הכסף - מהדורה מיוחדת",
       price: 460,
       category: "silver",
-      image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/silver-eagle-coin_de47d4eb.png",
-      description: "הטבעה אמנותית של ראש עיט עוצמתי - כסף טהור 999, 1 אונקיה, מהמטבעה הרשמית של האמירויות",
+      image: EAGLE_COIN_IMG,
+      description: "הטבעה אמנותית של ראש עיט עוצמתי מהמטבעה הרשמית של האמירויות. כסף טהור 999, 1 אונקיה.",
       inStock: true,
       badge: "מהדורה מיוחדת"
     },
@@ -30,127 +34,91 @@ export default function Shop() {
       name: "מטבע מנורה - מהדורה מיוחדת",
       price: 460,
       category: "silver",
-      image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/menorah-coin_14feb8fd.png",
-      description: "מנורת שבעת הקנים המסורתית - כסף טהור 999, 1 אונקיה, מהמטבעה הרשמית של האמירויות",
+      image: MENORAH_COIN_IMG,
+      description: "מנורת שבעת הקנים המסורתית מהמטבעה הרשמית של האמירויות. כסף טהור 999, 1 אונקיה.",
       inStock: true,
       badge: "מהדורה מיוחדת"
     }
   ];
 
-  const filteredProducts = products.filter(product => 
-    category === "all" || product.category === category
-  );
-
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    if (sortBy === "price-asc") return a.price - b.price;
-    if (sortBy === "price-desc") return b.price - a.price;
-    if (sortBy === "name") return a.name.localeCompare(b.name);
-    return 0;
-  });
-
   return (
     <Layout>
       {/* Page Header */}
       <section className="bg-secondary py-12">
-        <div className="container">
-          <h1 className="text-4xl lg:text-5xl font-['Playfair_Display'] font-bold text-foreground text-center mb-4">
-            חנות המוצרים
+        <div className="container text-center">
+          <h1 className="text-4xl lg:text-5xl font-['Playfair_Display'] font-bold text-foreground mb-4">
+            חנות
           </h1>
-          <div className="ornament-divider">
+          <div className="flex justify-center gap-2 my-4">
             <span className="inline-block w-12 h-1 bg-primary rounded"></span>
+            <span className="inline-block w-3 h-1 bg-primary/50 rounded"></span>
           </div>
-          <p className="text-center text-muted-foreground font-['Cormorant_Garamond'] text-lg mt-6 max-w-2xl mx-auto">
-            מבחר מוצרי זהב וכסף איכותיים להשקעה
+          <p className="text-muted-foreground font-['Cormorant_Garamond'] text-lg max-w-2xl mx-auto">
+            מטבעות כסף טהור ממנטת Emirates Gold - מהדורות מיוחדות בלבד
           </p>
         </div>
       </section>
 
-      {/* Filters */}
-      <section className="py-8 border-b border-border">
-        <div className="container">
-          <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
-            <div className="flex items-center gap-4">
-              <span className="text-sm font-medium">סינון:</span>
-              <Select value={category} onValueChange={setCategory}>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="כל המוצרים" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">כל המוצרים</SelectItem>
-                  <SelectItem value="gold">זהב</SelectItem>
-                  <SelectItem value="silver">כסף</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <span className="text-sm font-medium">מיון:</span>
-              <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="מומלצים" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="featured">מומלצים</SelectItem>
-                  <SelectItem value="price-asc">מחיר: נמוך לגבוה</SelectItem>
-                  <SelectItem value="price-desc">מחיר: גבוה לנמוך</SelectItem>
-                  <SelectItem value="name">שם המוצר</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Products Grid */}
-      <section className="py-12">
+      <section className="py-16 bg-background">
         <div className="container">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {sortedProducts.map((product) => (
-              <Card key={product.id} className="group hover:shadow-xl transition-all duration-500 border-2 hover:border-primary/30">
+          <div className="grid md:grid-cols-2 gap-10 max-w-3xl mx-auto">
+            {products.map((product) => (
+              <Card
+                key={product.id}
+                className="group hover:shadow-2xl transition-all duration-500 border-2 hover:border-primary/40 overflow-hidden"
+              >
                 <CardHeader className="p-0">
-                  <div className="relative overflow-hidden rounded-t-lg aspect-square">
+                  <div className="relative overflow-hidden aspect-square bg-secondary/60">
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      className="w-full h-full object-contain p-6 group-hover:scale-110 transition-transform duration-700"
                     />
                     {product.badge && (
                       <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
                         {product.badge}
                       </div>
                     )}
-                    {product.category === "gold" && (
-                      <div className="absolute top-4 left-4 bg-amber-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                        זהב
-                      </div>
-                    )}
-                    {product.category === "silver" && (
-                      <div className="absolute top-4 left-4 bg-slate-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                        כסף
-                      </div>
-                    )}
+                    <div className="absolute top-4 left-4 bg-slate-600/80 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                      כסף
+                    </div>
                   </div>
                 </CardHeader>
                 <CardContent className="p-6">
-                  <CardTitle className="text-lg font-['Playfair_Display'] mb-2 line-clamp-2">
+                  <CardTitle className="text-xl font-['Playfair_Display'] mb-2 leading-snug">
                     {product.name}
                   </CardTitle>
-                  <CardDescription className="font-['Cormorant_Garamond'] text-base mb-4">
+                  <CardDescription className="font-['Cormorant_Garamond'] text-base leading-relaxed">
                     {product.description}
                   </CardDescription>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-2xl font-['Lora'] font-bold text-primary">
-                      ₪{product.price.toLocaleString('he-IL', { minimumFractionDigits: 2 })}
-                    </span>
-                    <span className="text-sm text-muted-foreground">ליחידה</span>
+                  <div className="mt-4 flex items-baseline gap-2">
+                    <span className="text-3xl font-['Lora'] font-bold text-primary">₪{product.price}</span>
+                    <span className="text-sm text-muted-foreground">ליחידה (כולל מע"מ)</span>
+                  </div>
+                  <div className="mt-2">
+                    <Badge variant="outline" className="text-green-400 border-green-400/50 text-xs">
+                      ✓ זמין במלאי
+                    </Badge>
                   </div>
                 </CardContent>
-                <CardFooter className="p-6 pt-0 flex gap-2">
-                  <Button className="flex-1 bg-primary hover:bg-primary/90">
-                    הוסף לסל
+                <CardFooter className="p-6 pt-0 flex gap-3">
+                  <Button
+                    className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+                    size="lg"
+                    onClick={() => {
+                      setSelectedProduct(product);
+                      setIsPaymentOpen(true);
+                    }}
+                  >
+                    קנה עכשיו
                   </Button>
                   <Link href={`/product/${product.id}`}>
-                    <Button variant="outline" className="flex-1">
+                    <Button
+                      variant="outline"
+                      className="flex-1 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                      size="lg"
+                    >
                       פרטים
                     </Button>
                   </Link>
@@ -160,6 +128,19 @@ export default function Shop() {
           </div>
         </div>
       </section>
+
+      {/* Payment Wizard */}
+      {selectedProduct && (
+        <PaymentWizard
+          open={isPaymentOpen}
+          onClose={() => setIsPaymentOpen(false)}
+          product={{
+            name: selectedProduct.name,
+            price: selectedProduct.price,
+            image: selectedProduct.image
+          }}
+        />
+      )}
     </Layout>
   );
 }

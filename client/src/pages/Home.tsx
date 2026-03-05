@@ -87,11 +87,16 @@ export default function Home() {
               </div>
             </div>
             <div className="relative animate-fadeIn animation-delay-200">
-              <div className="relative rounded-lg overflow-hidden shadow-2xl border-4 border-primary/20">
+              <div className="relative rounded-lg overflow-hidden shadow-2xl border-4 border-primary/20 grid grid-cols-2 gap-3 p-4 bg-secondary">
                 <img
-                  src={heroImageUrl}
-                  alt="מטילי זהב"
-                  className="w-full h-auto object-cover"
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/silver-eagle-coin_de47d4eb.png"
+                  alt="מטבע עיט הכסף"
+                  className="w-full h-auto object-contain rounded-lg hover:scale-105 transition-transform duration-500"
+                />
+                <img
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/menorah-coin_14feb8fd.png"
+                  alt="מטבע מנורה"
+                  className="w-full h-auto object-contain rounded-lg hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>

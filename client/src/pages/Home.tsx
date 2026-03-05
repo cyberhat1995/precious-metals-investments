@@ -21,11 +21,18 @@ export default function Home() {
 
   const products = [
     {
-      id: 1,
-      name: "מטבע כסף דרמי 100 - מהדורה מוגבלת",
+      id: 2,
+      name: "מטבע עיט הכסף - מהדורה מיוחדת",
       price: "₪460",
-      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663043088566/UuKfUrSKRsqWyLFT.png",
-      description: "מטבע כסף טהור 999 במהדורה מוגבלת של 10,000 יחידות"
+      image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/silver-eagle-coin_de47d4eb.png",
+      description: "הטבעה אמנותית של ראש עיט עוצמתי - כסף טהור 999, 1 אונקיה"
+    },
+    {
+      id: 3,
+      name: "מטבע מנורה - מהדורה מיוחדת",
+      price: "₪460",
+      image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663043088566/EpPithG759YMRbGiWPaXVx/menorah-coin_14feb8fd.png",
+      description: "מנורת שבעת הקנים המסורתית - כסף טהור 999, 1 אונקיה"
     }
   ];
 

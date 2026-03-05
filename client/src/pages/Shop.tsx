@@ -16,16 +16,6 @@ export default function Shop() {
 
   const products = [
     {
-      id: 1,
-      name: "מטבע כסף דרמי 100 - מהדורה מוגבלת",
-      price: 460,
-      category: "silver",
-      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663043088566/UuKfUrSKRsqWyLFT.png",
-      description: "מטבע כסף טהור 999 במהדורה מוגבלת של 10,000 יחידות - עיצוב דו-צדדי ייחודי",
-      inStock: true,
-      badge: "מהדורה מוגבלת"
-    },
-    {
       id: 2,
       name: "מטבע עיט הכסף - מהדורה מיוחדת",
       price: 460,
